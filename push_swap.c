@@ -6,59 +6,73 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 13:38:28 by digulraj          #+#    #+#             */
-/*   Updated: 2025/10/23 16:35:15 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:09:37 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	median_partition(t_node **a, t_node **b)
+{
+	int	size;
+	int	median;
+	int	processed;
+	int	pushed;
+
+	size = list_size(*a);
+	median = get_median(*a, size);
+	processed = 0;
+	pushed = 0;
+	while (processed < size)
+	{
+		if ((*a)->value < median)
+		{
+			pb(a, b);
+			pushed++;
+		}
+		else
+			ra(a);
+		processed++;
+	}
+	if (pushed == 0 && *a)
+		pb(a, b);
+}
+
+static void	push_back_sorted(t_node **a, t_node **b)
+{
+	while (*b)
+		push_max_to_a(a, b);
+}
+
+static void	push_swap(t_node **a)
+{
+	t_node	*b;
+
+	b = NULL;
+	if (is_sorted(*a))
+		return ;
+	if (list_size(*a) <= 5)
+	{
+		sort_small(a, &b);
+		return ;
+	}
+	while (list_size(*a) > 3)
+		median_partition(a, &b);
+	sort_three(a);
+	push_back_sorted(a, &b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_node	*stack;
-	t_node	*tmp;
 
 	if (argc < 2)
 		return (0);
 	stack = stack_init(argc, argv);
 	if (!stack)
 		return (1);
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%d ", tmp->value);
-		tmp = tmp->next;
-	}
-	printf("\n Stack sorted: %i", is_sorted(stack));
+	push_swap(&stack);
 	free_list(stack);
 	return (0);
 }
-/*
-int	main(int ac, char **av)
-{
-	t_node	*stacka;
-	t_node	*sta
-
-	stacka = NULL;
-	stackb = NULL;
-
-	i = 0;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
-		return (1);
-	else if (ac == 2)
-		av = ft_split(av[1], ' ');
-stack_init(FILL IN!!);
-	if (!is_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else
-			sort_stacks(&a, &b);
-	}
-	free_stack(&a);
-	return (0);
-}
-*/
-
 

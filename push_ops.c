@@ -6,24 +6,26 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:51 by digulraj          #+#    #+#             */
-/*   Updated: 2025/10/31 16:52:09 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:06:37 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	push(t_node **src, t_node **dst)
+#include "push_swap.h"
+
+static void	push(t_node **src, t_node **dst)
 {
 	t_node	*node;
 
 	if (!src || !*src)
 		return ;
 	node = *src;
-	*src = *src->next;
+	*src = (*src)->next;
 	if (*src)
-		*src->prev = NULL;
+		(*src)->prev = NULL;
 	node->next = *dst;
 	node->prev = NULL;
 	if (*dst)
-		*dst->prev = node;
+		(*dst)->prev = node;
 	*dst = node; 
 }
 

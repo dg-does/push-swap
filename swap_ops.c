@@ -6,16 +6,18 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:51 by digulraj          #+#    #+#             */
-/*   Updated: 2025/10/31 16:33:53 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:10:11 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	swap(t_node **head)
+#include "push_swap.h"
+
+static void	swap(t_node **head)
 {
 	t_node	*first;
 	t_node	*second;
 
-	if (!head || !*head || !*head->next)
+	if (!head || !*head || !(*head)->next)
 		return ;
 	first = *head;
 	second = first->next;

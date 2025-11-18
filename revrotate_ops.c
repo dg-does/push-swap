@@ -1,51 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_ops.c                                       :+:      :+:    :+:   */
+/*   revrotate_ops.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:55:33 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/18 16:11:08 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:11:46 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	rotate(t_node **head)
+static	void	revrotate(t_node **head)
 {
-	t_node	*first;
+	t_node	*prev;
 	t_node	*last;
 
 	if (!head || !*head || !(*head)->next)
 		return ;
-	first = *head;
-	*head = first->next;
-	(*head)->prev = NULL;
 	last = *head;
 	while (last->next)
 		last = last->next;
-	last->next = first;
-	first->prev = last;
-	first->next = NULL;
+	prev = last->prev;
+	prev->next = NULL;
+	last->prev = NULL;
+	last->next = *head;
+	(*head)->prev = last;
+	*head = last;
 }
 
-void	ra(t_node	**a)
+void	rra(t_node	**a)
 {
-	rotate(a);
-	write(1, "ra\n", 3);
+	revrotate(a);
+	write(1, "rra\n", 4);
 }
 
-void	rb(t_node	**b)
+void	rrb(t_node	**b)
 {
-	rotate(b);
-	write(1, "rb\n", 3);
+	revrotate(b);
+	write(1, "rrb\n", 4);
 }
-
-void	rr(t_node **a, t_node **b)
-{
-	rotate(a);
-	rotate(b);
-	write(1, "rr\n", 3);
-}
-
