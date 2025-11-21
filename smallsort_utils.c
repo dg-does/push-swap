@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_utils.c                                    :+:      :+:    :+:   */
+/*   smallsort_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dimplegurajani <dimplegurajani@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 16:44:11 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/16 16:56:41 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/20 02:41:05 by dimpleguraj      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,6 @@ int	find_min_pos(t_node *head)
 	return (pos);
 }
 
-int	find_max_pos(t_node *head)
-{
-	int	max;
-	int	pos;
-	int	i;
-
-	if (!head)
-		return (0);
-	max = head->value;
-	pos = 0;
-	i = 0;
-	while (head)
-	{
-		if (head->value > max)
-		{
-			max = head->value;
-			pos = i;
-		}
-		head = head->next;
-		i++;
-	}
-	return (pos);
-}
-
 void	push_min_to_b(t_node **a, t_node **b)
 {
 	int	pos;
@@ -91,24 +67,4 @@ void	push_min_to_b(t_node **a, t_node **b)
 			rra(a);
 	}
 	pb(a, b);
-}
-
-void	push_max_to_a(t_node **a, t_node **b)
-{
-	int	pos;
-	int	size;
-
-	size = list_size(*a);
-	pos = find_max_pos(*a);
-	if (pos <= size / 2)
-	{
-		while (pos-- > 0)
-			rb(a);
-	}
-	else
-	{
-		while (pos++ < size)
-			rrb(a);
-	}
-	pa(a, b);
 }
