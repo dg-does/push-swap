@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimplegurajani <dimplegurajani@student.    +#+  +:+       +#+        */
+/*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 13:38:28 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/20 16:38:40 by dimpleguraj      ###   ########.fr       */
+/*   Updated: 2025/11/21 14:48:53 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,36 @@ static void	push_swap(t_node **a)
 		sort_small(a, &b);
 		return ;
 	}
-    assign_index(*a);
-    lis = compute_lis_indices(*a, &lis_len);
-    if (!lis)
-        return ;
+	assign_index(*a);
+	lis = compute_lis_indices(*a, &lis_len);
+	if (!lis)
+		return ;
 	mark_lis_nodes(*a, lis, lis_len);
 	free(lis);
-    extract_lis(a, &b);
+	extract_lis(a, &b);
 	sort_three(a);
-	push_back_to_a(a, &b);	
+	push_back_to_a(a, &b);
 }
 
+static void    print_stack(t_node *stack)
+{
+    t_node *tmp = stack;
+
+    printf("[STACK] ");
+
+    if (!tmp)
+    {
+        printf("(empty)\n");
+        return;
+    }
+
+    while (tmp)
+    {
+        printf("%d ", tmp->value);
+        tmp = tmp->next;
+    }
+    printf("\n");
+}//*/
 
 int	main(int argc, char **argv)
 {

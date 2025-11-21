@@ -3,57 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   lis_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimplegurajani <dimplegurajani@student.    +#+  +:+       +#+        */
+/*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:01:46 by dimpleguraj       #+#    #+#             */
-/*   Updated: 2025/11/20 16:51:16 by dimpleguraj      ###   ########.fr       */
+/*   Updated: 2025/11/21 13:52:29 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void find_dp(int *arr, int *dp, int *prev, int size)
+int	*stack_to_array(t_node *a, int size)
 {
-    int i;
-    int j;
+	int	*arr;
+	int	i;
 
-    i = 0;
-    while (i < size)
-    {
-        dp[i] = 1;
-        prev[i] = -1;
-        j = 0;
-        while (j < i)
-        {
-            if (arr[j] < arr[i] && dp[j] + 1 > dp[i])
-            {
-                dp[i] = dp[j] + 1;
-                prev[i] = j;
-            }
-            j++;
-        }
-        i++;
-    }
+	arr = malloc(sizeof(int) * size);
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (i < size && a)
+	{
+		arr[i] = a->index;
+		a = a->next;
+		i++;
+	}
+	return (arr);
 }
 
-static int find_lis_end(int *dp, int size, int *len)
+static void	find_dp(int *arr, int *dp, int *prev, int size)
 {
-    int i;
-    int max_i;
+	int	i;
+	int	j;
 
-    *len = dp[0];
-    max_i = 0;
-    i = 1;
-    while (i < size)
-    {
-        if (dp[i] > *len)
-        {
-            *len = dp[i];
-            max_i = i;
-        }
-        i++;
-    }
-    return (max_i);
+	i = 0;
+	while (i < size)
+	{
+		dp[i] = 1;
+		prev[i] = -1;
+		j = 0;
+		while (j < i)
+		{
+			if (arr[j] < arr[i] && dp[j] + 1 > dp[i])
+			{
+				dp[i] = dp[j] + 1;
+				prev[i] = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+static int	find_lis_end(int *dp, int size, int *len)
+{
+	int	i;
+	int	max_i;
+
+	*len = dp[0];
+	max_i = 0;
+	i = 1;
+	while (i < size)
+	{
+		if (dp[i] > *len)
+		{
+			*len = dp[i];
+			max_i = i;
+		}
+		i++;
+	}
+	return (max_i);
 }
 
 static void build_lis(int *arr, int *prev, int end, int len, int *lis)
@@ -69,7 +87,7 @@ static void build_lis(int *arr, int *prev, int end, int len, int *lis)
     }
 }
 
-int *compute_lis_indices(t_node *a, int *lis_len)
+int	*compute_lis_indices(t_node *a, int *lis_len)
 {
     int *dp;
     int *prev;

@@ -6,7 +6,7 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:45:51 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/18 16:06:37 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/21 13:15:13 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static void	push(t_node **src, t_node **dst)
 
 void	pa(t_node **a, t_node **b)
 {
-	push(a, b);
+	push(b, a);
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_node **a, t_node **b)
 {
-	push(b, a);
+	push(a, b);
 	write(1, "pb\n", 3);
 }
