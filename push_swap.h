@@ -6,7 +6,7 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 13:38:47 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/21 14:05:34 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:09:19 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_cost
 
 void		free_list(t_node *head);
 int			list_size(t_node *head);
-int			find_insert_index(t_node *a, int b_index);
+int			find_insert_index(t_node *a, int value);
 int			*stack_to_array(t_node *a, int size);
 int			*build_lis_mask(t_node *head, int size);
 t_node		*find_b_to_push(t_node *a, t_node *b, t_cost *best);

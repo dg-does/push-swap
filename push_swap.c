@@ -6,7 +6,7 @@
 /*   By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 13:38:28 by digulraj          #+#    #+#             */
-/*   Updated: 2025/11/21 14:48:53 by digulraj         ###   ########.fr       */
+/*   Updated: 2025/11/21 18:39:44 by digulraj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ static void	push_swap(t_node **a)
 	mark_lis_nodes(*a, lis, lis_len);
 	free(lis);
 	extract_lis(a, &b);
-	sort_three(a);
 	push_back_to_a(a, &b);
 }
 
-static void    print_stack(t_node *stack)
+void    print_stack(t_node *stack)
 {
     t_node *tmp = stack;
 

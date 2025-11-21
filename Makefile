@@ -6,7 +6,7 @@
 #    By: digulraj <digulraj@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/26 17:36:02 by digulraj          #+#    #+#              #
-#    Updated: 2025/11/21 13:56:42 by digulraj         ###   ########.fr        #
+#    Updated: 2025/11/21 19:04:47 by digulraj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FLAGS = -Wall -Wextra -Werror -I.
 
 SRC = costcalc.c ft_split.c init_utils.c initialisation.c index_utils.c lis_utils.c \
 	makemoves.c push_ops.c push_swap.c swap_ops.c rotate_ops.c revrotate_ops.c  \
-	smallsort.c smallsort_utils.c reinsert.c
+	smallsort.c smallsort_utils.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
